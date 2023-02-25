@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="row">
+    {% include "/pages/admin/_sidebar.html" %}
+
+    <div class="col-md-8 col-lg-10 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
+        <h1>All Users
+            <a href="/admin/user/create" class="btn btn-primary float-right">Create</a></h1>
+        <small>4 records</small>
+        <table class="table table-condensed">
+            <tbody>
+                <th></th>
+                <th>Username</th>
+                <th>Full Name</th>
+                <th>Role</th>
+                <th>Created Date</th>
+            </tbody>
+            <tbody>
+                <tr>
+                    <td><a href="/admin/user/edit" class="btn btn-outline-primary"><i class="bi bi-pencil-fill"></i></a></td>
+                    <td>
+                        <img src="../static/logo.png" class="pp-sm me-2" alt="...">
+                        username1@server.com
+                    </td>
+                    <td>Test User1</td>
+                    <td>(none)</td>
+                    <td>2023-03-01</td>
+                </tr>
+                <tr>
+                    <td><a href="/admin/user/edit" class="btn btn-outline-primary"><i class="bi bi-pencil-fill"></i></a></td>
+                    <td>
+                        <img src="../static/logo.png" class="pp-sm me-2" alt="...">
+                        username2@server.com
+                    </td>
+                    <td>Test User2</td>
+                    <td>admin</td>
+                    <td>2023-03-01</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}
