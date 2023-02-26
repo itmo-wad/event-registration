@@ -1,0 +1,66 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="row">
+    <div class="col-md-4 col-lg-3 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
+        <img src="../static/image-placeholder.jpg" class="card-img-top" alt="..." style="height: 350px ; width: auto;">
+    </div>
+    <div class="col-md-5">
+        <img class="img-fluid mb-3" src="../static/assets/explanation.png" alt="explanation"
+            style="height: 350px ;width: auto;">
+    </div>
+    <div class="col-md-1" style="margin-top:70px;">
+        <div>
+            <button class="btn btn-outline-secondary" style=" border-color: transparent;">
+                <img src="../static/assets/like.png" style="height: 30px;">
+            </button>
+        </div>
+        <div>
+            <button class="btn btn-outline-secondary" style=" border-color: transparent;">
+                <img src="../static/assets/comment.png" style="height: 30px;">
+            </button>
+        </div>
+        <div>
+            <button class="btn btn-outline-secondary" style=" border-color: transparent;">
+                <img src="../static/assets/share.png" style="height: 30px;">
+            </button>
+        </div>
+    </div>
+</div>
+
+
+<div>
+    <div class="col-md-3">
+        <div class="d-flex flex-row">
+            <button class="btn btn-outline-secondary mr-3" style=" border-color: transparent;">
+                <img src="../static/assets/register.png" style="height: 30px;">
+            </button>
+            <p class="my-auto">Register</p>
+
+            <button class="btn btn-outline-secondary mr-3" style=" border-color: transparent;">
+                <img src="../static/assets/addList.png" style="height: 30px;">
+            </button>
+            <p class="my-auto">Add to the list</p>
+        </div>
+    </div>
+</div>
+<div>
+    <div class="col-md-3">
+        <div class="d-flex flex-row">
+            <button class="btn btn-outline-secondary mr-3" style=" border-color: transparent;">
+                <img src="../static/assets/edit.png" style="height: 30px;">
+            </button>
+            <p class="my-auto">Edit</p>
+
+            <button class="btn btn-outline-secondary mr-3" style=" border-color: transparent;">
+                <img src="../static/assets/delete.png" style="height: 30px;">
+            </button>
+            <p class="my-auto">Delete</p>
+        </div>
+    </div>
+</div>
+
+
+</div>
+
+{% endblock %}
