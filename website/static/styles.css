@@ -38,3 +38,11 @@
   max-height: 40px;
   object-fit: cover;
 }
+table.no-first-col td:first-child,
+table.no-first-col th:first-child {
+  width: 20px;
+}
+.err-404 span {
+  font-size: 15rem;
+  padding: 10px 0px;
+}

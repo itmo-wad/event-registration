@@ -13,6 +13,10 @@ Menu = {
     },
 
     setAllUsers: function() {
+        $('.list-group.admin >').eq(2).addClass('active');
+    },
+
+    setAllClubs: function() {
         $('.list-group.admin >').eq(1).addClass('active');
     }
 };

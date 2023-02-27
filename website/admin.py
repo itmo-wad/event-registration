@@ -34,3 +34,19 @@ def edit_user():
 @admin.route('/admin/users', methods=["GET", "POST"])
 def users():
     return render_template(f'pages/admin/users.html')
+
+
+
+@admin.route('/admin/club/create', methods=["GET", "POST"])
+def create_club():
+    return render_template(f'pages/admin/create_club.html')
+
+
+@admin.route('/admin/club/edit', methods=["GET", "POST"])
+def edit_club():
+    return render_template(f'pages/admin/edit_club.html')
+
+
+@admin.route('/admin/clubs', methods=["GET", "POST"])
+def clubs():
+    return render_template(f'pages/admin/clubs.html')
