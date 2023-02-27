@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="row">
+    {% include "/pages/admin/_sidebar.html" %}
+
+    <div class="col-md-8 col-lg-10 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
+        <h1>My Events
+            <a href="/admin/event/create" class="btn btn-primary float-right">Create</a></h1>
+        <small>4 records</small>
+        <table class="table table-condensed no-first-col">
+            <tbody>
+                <th></th>
+                <th colspan="2">Content</th>
+                <th>Created Date</th>
+                <th>End Date</th>
+            </tbody>
+            <tbody>
+                <tr>
+                    <td><a href="/admin/event/edit" class="btn btn-outline-primary"><i class="bi bi-pencil-fill"></i></a></td>
+                    <td style="width:200px">
+                        <img src="../static/image-placeholder.jpg" class="card-img-top" alt="...">
+                    </td>
+                    <td>
+                        <h5>Event Name</h5>
+                        Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.
+                    </td>
+                    <td>2023-02-01</td>
+                    <td>2023-03-01</td>
+                </tr>
+
+
+                <tr>
+                    <td><a href="/admin/event/edit" class="btn btn-outline-primary"><i class="bi bi-pencil-fill"></i></a></td>
+                    <td style="width:200px">
+                        <img src="../static/image-placeholder.jpg" class="card-img-top" alt="...">
+                    </td>
+                    <td>
+                        <h5>Event Name</h5>
+                        Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.
+                    </td>
+                    <td>2023-02-01</td>
+                    <td>2023-03-01</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<script>
+Menu.setEvents();
+</script>
+
+{% endblock %}

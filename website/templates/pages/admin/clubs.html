@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="row">
+    {% include "/pages/admin/_sidebar.html" %}
+
+    <div class="col-md-8 col-lg-10 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
+        <h1>All Clubs
+            <a href="/admin/club/create" class="btn btn-primary float-right">Create</a></h1>
+        <small>4 records</small>
+        <table class="table table-condensed no-first-col">
+            <tbody>
+                <th></th>
+                <th>Name</th>
+                <th>Description</th>
+            </tbody>
+            <tbody>
+                <tr>
+                    <td><a href="/admin/club/edit" class="btn btn-outline-primary"><i class="bi bi-pencil-fill"></i></a></td>
+                    <td>Environment Club</td>
+                    <td>(none)</td>
+                </tr>
+                <tr>
+                    <td><a href="/admin/club/edit" class="btn btn-outline-primary"><i class="bi bi-pencil-fill"></i></a></td>
+                    <td>Culture Club</td>
+                    <td>(none)</td>
+                </tr>
+                <tr>
+                    <td><a href="/admin/club/edit" class="btn btn-outline-primary"><i class="bi bi-pencil-fill"></i></a></td>
+                    <td>Codex Club</td>
+                    <td>(none)</td>
+                </tr>
+                <tr>
+                    <td><a href="/admin/club/edit" class="btn btn-outline-primary"><i class="bi bi-pencil-fill"></i></a></td>
+                    <td>Biotechnology Club</td>
+                    <td>(none)</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+
+<script>
+    Menu.setAllClubs();
+</script>
+{% endblock %}
