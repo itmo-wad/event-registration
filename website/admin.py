@@ -1,5 +1,7 @@
 from flask import Blueprint, redirect, render_template, request, session, url_for
 
+from website import mongo
+
 admin = Blueprint("admin", __name__, template_folder='templates')
 
 
@@ -9,7 +11,8 @@ def index():
 
 @admin.route('/admin/events', methods=["GET", "POST"])
 def events():
-    return render_template(f'pages/admin/events.html')
+    all_events = mongo.db.events.find({})
+    return render_template(f'pages/admin/events.html', all_events = all_events)
 
 
 @admin.route('/admin/event/create', methods=["GET", "POST"])

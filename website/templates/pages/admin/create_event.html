@@ -8,29 +8,29 @@
         <h1>Create Event</h1>
         <a href="/admin">Back</a>
 
-        <form class="mt-3">
+        <form class="mt-3" method="POST" enctype="multipart/form-data" action="/admin/create_event">
             <div class="form-group row">
               <label for="staticEmail" class="col-sm-2 col-form-label">Event Name</label>
               <div class="col-sm-10">
-                <input type="text" class="form-control" id="inputPassword" placeholder="">
+                <input type="text" class="form-control" id="staticEmail" placeholder="" name="eventname">
               </div>
             </div>
             <div class="form-group row">
-              <label for="inputPassword" class="col-sm-2 col-form-label">Content</label>
+              <label for="content" class="col-sm-2 col-form-label">Content</label>
               <div class="col-sm-10">
-                <textarea type="text" class="form-control" id="inputPassword" placeholder="" ></textarea>
+                <textarea type="text" class="form-control" id="content" placeholder="" name="eventcontent"></textarea>
               </div>
             </div>
             <div class="form-group row">
-              <label for="staticEmail" class="col-sm-2 col-form-label">Cover Image</label>
+              <label for="image" class="col-sm-2 col-form-label">Cover Image</label>
               <div class="col-sm-10">
-                <input type="file" class="" id="inputPassword" placeholder="">
+                <input type="file" class="" id="image" placeholder="" name="file">
               </div>
             </div>
             <div class="form-group row">
-              <label for="staticEmail" class="col-sm-2 col-form-label">End Date</label>
+              <label for="date" class="col-sm-2 col-form-label">End Date</label>
               <div class="col-sm-10">
-                <input type="date" class="form-control" id="inputPassword" placeholder="">
+                <input type="date" class="form-control" id="date" placeholder="" name="eventdate">
               </div>
             </div>
 

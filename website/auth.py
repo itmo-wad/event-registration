@@ -1,3 +1,5 @@
+import os
+
 from flask import Blueprint, render_template, session, redirect, url_for, request, flash, make_response
 import re
 from werkzeug.security import generate_password_hash, check_password_hash
@@ -87,3 +89,94 @@ def sign_up():
 def sign_out():
     session.pop('email', None)
     return redirect(url_for('index'))
+
+
+#events handling
+
+@auth.route('admin/create_event', methods=["GET", "POST"])              #function to create events.... still needs some updates
+def event_create():
+
+    if request.method == "POST":
+        eventname = request.form.get('eventname')
+        content = request.form.get('eventcontent')
+        eventdate = request.form.get('eventdate')
+
+        if not eventname or not content or not eventdate:
+            flash('Please fill in all the required fields', 'danger')
+        else:
+
+            image_data = request.files['file']
+            filename = f'{session["email"]}{os.path.splitext(image_data.filename)[1]}'
+
+
+            IMAGES_FOLDER = './website/static/'
+            ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg'}
+
+
+            folder = os.path.abspath(IMAGES_FOLDER)
+            path = os.path.join(folder, filename)
+            os.makedirs(folder, exist_ok=True)
+
+            image_data.save(path)
+
+
+            mongo.db.events.insert_one(
+                {'eventname': eventname, 'content': content,
+                 'image_url': f'/static/{filename}', 'eventdate': eventdate})
+
+            flash("Event has been successfully created", 'success')
+            return redirect(url_for('views.home'))
+
+        return redirect(url_for('admin.create_event'))
+
+
+
+
+@auth.route('/admin/edit_event/<string:id>/', methods=['GET', 'POST'])
+def edit_event(id):
+    if request.method == "POST":
+        eventname = request.form.get('eventname')
+        content = request.form.get('eventcontent')
+        eventdate = request.form.get('eventdate')
+
+        if not eventname or not content or not eventdate:
+            flash("No info entered", 'danger')
+        else:
+
+            IMAGES_FOLDER = './static/images/'
+            ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg'}
+
+            query = {"_id": id}
+            if request.files.__len__() > 0:
+                image_data = request.files['file']
+                filename = f'{session["email"]}{os.path.splitext(image_data.filename)[1]}'
+
+                folder = os.path.abspath(IMAGES_FOLDER)
+                path = os.path.join(folder, filename)
+                os.makedirs(folder, exist_ok=True)
+
+                image_data.save(path)
+
+                mongo.db.events.update_one({'email': session['email']}, {"$set": {
+                    'images_url': f'/static/images/{filename}',
+                }})
+
+                newvalues = {"$set":  {'eventname': eventname, 'content': content,
+                                'image_url': f'/static/{filename}', 'eventdate': eventdate}}
+                mongo.db.events.update_one(query, newvalues)
+            else:
+                newvalues = {"$set": {'eventname': eventname, 'content': content,
+                                    'eventdate': eventdate}}
+                mongo.db.events.update_one(query, newvalues)
+
+            flash("Event has just updated", 'success')
+            return redirect(url_for('login'))
+    else:
+        query = {"_id": id}
+
+        details= mongo.db.events.find_one(query)
+
+
+        return render_template (("/pages/admin/edit_event.html"), n=details)
+
+    return render_template("/pages/admin/edit_event.html")
