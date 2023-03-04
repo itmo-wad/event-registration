@@ -1,19 +1,17 @@
 from flask import Blueprint, render_template
 
+
 views = Blueprint('views', __name__)
 
 
-# @app.route("/")
-# def index():
-#     if 'username' in session:
-#         return render_template(f'pages/index.html')
-
-#     # Render authentication form at http://localhost:5000/
-#     return redirect(url_for("auth_page.sign_in"))
-
-@views.route('/')
+@views.route('/', methods=['GET', 'POST'])
 def home():
-    return render_template(f'pages/index.html')
+
+    # query2= {"_id": id}
+    #
+    # details1 = mongo.db.events.find_one(query2)
+
+    return render_template(f'pages/index.html')#, n=details1)
 
 
 @views.route('/event-page')

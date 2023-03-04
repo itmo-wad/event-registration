@@ -61,17 +61,19 @@
 <div class="container">
     <div class="row">
         <div class="col-md-6 offset-md-3">
-            <div class="login-form">
+            <div class="login-form" action="/auth">
                 <div class="text-center"><img src="../static/logo.png" class="logo"></div>
                 <h2>Login</h2>
-                <form>
+
+
+                <form method="POST"> <!--Added method and action here-->
                     <div class="form-group">
-                        <label>Username</label>
-                        <input type="text" class="form-control" placeholder="Enter username">
+                        <label>Email</label>
+                        <input type="text" class="form-control" placeholder="Enter email" name="email">
                     </div>
                     <div class="form-group">
                         <label>Password</label>
-                        <input type="password" class="form-control" placeholder="Enter password">
+                        <input type="password" class="form-control" placeholder="Enter password" name="password">
                     </div>
                     <input type="submit" class="btn btn-primary btn-block" value="Login">
                 </form>
