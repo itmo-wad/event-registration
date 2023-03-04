@@ -9,7 +9,7 @@
         <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
             <li><a href="/" class="nav-link px-2 ">Home</a></li>
             <li><a href="/admin" class="nav-link px-2 ">Admin</a></li>
-            {% if 'username' in session %}
+            {% if 'email' in session %}
             <li><a href="/profile" class="nav-link px-2 ">Profile</a></li>
             {% endif %}
         </ul>
@@ -23,7 +23,7 @@
             <a href="#" class="btn btn-outline-default"><i class="fa bi-filter"></i></a>
 
             {% if 'email' in session %}
-            <a href="/auth/index">
+            <a href="/sign-out">
                 <button type="button" class="btn btn-primary">Logout</button>
             </a>
             {% else %}

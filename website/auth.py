@@ -80,15 +80,15 @@ def sign_up():
             flash('Account Created Succesfully', category="success")
 
             session['email'] = email
-            return redirect(f'/pages/index.html')
+            return redirect(url_for('views.home'))
 
     return render_template(f'pages/auth/register.html')
 
 
-@auth.route('/sign-out')
+@auth.route('/sign-out', methods=["GET","POST"])
 def sign_out():
     session.pop('email', None)
-    return redirect(url_for('index'))
+    return redirect(url_for('views.home'))
 
 
 #events handling
@@ -132,51 +132,52 @@ def event_create():
 
 
 
-# @auth.route('/admin/edit_event/<string:id>/', methods=['GET', 'POST'])
-# def edit_event(id):
-#     if request.method == "POST":
-#         eventname = request.form.get('eventname')
-#         content = request.form.get('eventcontent')
-#         eventdate = request.form.get('eventdate')
-#
-#         if not eventname or not content or not eventdate:
-#             flash("No info entered", 'danger')
-#         else:
-#
-#             IMAGES_FOLDER = './static/images/'
-#             ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg'}
-#
-#             query = {"_id": id}
-#             if request.files.__len__() > 0:
-#                 image_data = request.files['file']
-#                 filename = f'{session["email"]}{os.path.splitext(image_data.filename)[1]}'
-#
-#                 folder = os.path.abspath(IMAGES_FOLDER)
-#                 path = os.path.join(folder, filename)
-#                 os.makedirs(folder, exist_ok=True)
-#
-#                 image_data.save(path)
-#
-#                 mongo.db.events.update_one({'email': session['email']}, {"$set": {
-#                     'images_url': f'/static/images/{filename}',
-#                 }})
-#
-#                 newvalues = {"$set":  {'eventname': eventname, 'content': content,
-#                                 'image_url': f'/static/{filename}', 'eventdate': eventdate}}
-#                 mongo.db.events.update_one(query, newvalues)
-#             else:
-#                 newvalues = {"$set": {'eventname': eventname, 'content': content,
-#                                     'eventdate': eventdate}}
-#                 mongo.db.events.update_one(query, newvalues)
-#
-#             flash("Event has just updated", 'success')
-#             return redirect(url_for('login'))
-#     else:
-#         query = {"_id": id}
-#
-#         details= mongo.db.events.find_one(query)
-#
-#
-#         return render_template (("/pages/admin/edit_event.html"), n=details)
-#
-#     return render_template("/pages/admin/edit_event.html")
+
+@auth.route('/admin/edit_event/<string:id>/', methods=['GET', 'POST'])
+def edit_event(id):
+    if request.method == "POST":
+        eventname = request.form.get('eventname')
+        content = request.form.get('eventcontent')
+        eventdate = request.form.get('eventdate')
+
+        if not eventname or not content or not eventdate:
+            flash("No info entered", 'danger')
+        else:
+
+            IMAGES_FOLDER = './static/images/'
+            ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg'}
+
+            query = {"_id": id}
+            if request.files.__len__() > 0:
+                image_data = request.files['file']
+                filename = f'{session["email"]}{os.path.splitext(image_data.filename)[1]}'
+
+                folder = os.path.abspath(IMAGES_FOLDER)
+                path = os.path.join(folder, filename)
+                os.makedirs(folder, exist_ok=True)
+
+                image_data.save(path)
+
+                mongo.db.events.update_one({'email': session['email']}, {"$set": {
+                    'images_url': f'/static/images/{filename}',
+                }})
+
+                newvalues = {"$set":  {'eventname': eventname, 'content': content,
+                                'image_url': f'/static/{filename}', 'eventdate': eventdate}}
+                mongo.db.events.update_one(query, newvalues)
+            else:
+                newvalues = {"$set": {'eventname': eventname, 'content': content,
+                                    'eventdate': eventdate}}
+                mongo.db.events.update_one(query, newvalues)
+
+            flash("Event has just updated", 'success')
+            return redirect(url_for('login'))
+    else:
+        query = {"_id": id}
+
+        details= mongo.db.events.find_one(query)
+
+
+        return render_template (("/pages/admin/edit_event.html"), n=details)
+
+    return render_template("/pages/admin/edit_event.html")
